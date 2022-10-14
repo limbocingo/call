@@ -2,4 +2,4 @@
 Be easy to understand, productive and faster.
 
 # Version
-Current versión: `0.0.1v-beta`
+Current version: `0.0.1v-beta`
