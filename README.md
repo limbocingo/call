@@ -1,10 +1,11 @@
 # Fassy
-Be easy to understand, productive and faster.
-
-## Version
 Current version: `0.0.1v-beta`
 
-## Examples
+### Instalation
+clone: `git clone https://github.com/limbocingo/fassy/`
+install: `pip install .`
+
+### Examples
 
 ```python
 import fassy
