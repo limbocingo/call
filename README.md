@@ -2,7 +2,7 @@
 Current version: `0.0.1v-beta`
 
 ### Instalation
-clone: `git clone https://github.com/limbocingo/fassy/`
+clone: `git clone https://github.com/limbocingo/fassy/`\n
 install: `pip install .`
 
 ### Examples
