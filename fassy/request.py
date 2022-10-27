@@ -11,7 +11,7 @@ class Request:
     Transform the raw HTTP request to an more
     easy to manage version. This is so useful for getting
     the HTTP data gived by the client.
-    
+
     Public methods of the class:
         - `args`: The arguments gived in the URL.
         - `payload`: Data gived by the request.        
@@ -20,7 +20,7 @@ class Request:
     def __init__(self, response: BaseRequest) -> None:
         """
         Initializator of :class:`Request`.
-        
+
         Variables of the intializator:
             - `response`: The current response gived by the client.
             - `http`: A splited verison of the HTTP request gived by the client.
@@ -28,14 +28,14 @@ class Request:
             - `method`: Method that was made the HTTP request.
             - `version`: Verion of the HTTP request.
         """
-        
+
         #: The HTTP response gived by the client.
         #: And if uses for checking if the response needs
         #: to be decoded.
         self.response: bytes | str = response.receive
         if isinstance(self.response, bytes):
             self.response: str = response.receive.decode()
-    
+
         #: A set of extracted information from the
         #: current response gived by the client.
         #:

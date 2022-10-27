@@ -13,7 +13,7 @@ class Fassy(BaseServer):
     """
     Create you'r server making an instance of 
     this class and execute `start`.
-    
+
     Public variables of the class:
         - `page_not_found`: The not found page error.
         - `unknow_method`: If the method isn't registered will throw this error.
@@ -31,7 +31,7 @@ class Fassy(BaseServer):
         Initilaizator of the main class
         :class:`Fassy`.
         """
-        
+
         super().__init__()
 
         #: Asign the address and the port
@@ -51,10 +51,10 @@ class Fassy(BaseServer):
 
             if not view.path:
                 raise ValueError('None PATH gived for the view.')
-            
+
             if view.path == receive.path:
                 response: Response
-                
+
                 if receive.method == 'GET':
                     response = Response(
                         view.get(receive))
@@ -72,7 +72,8 @@ class Fassy(BaseServer):
                         view.delete(receive))
                 else:
                     response = self.unknow_method
-                
-                print(f'[{datetime.datetime.now()}] "{receive.http[0]}"', response.status)
+
+                print(
+                    f'[{datetime.datetime.now()}] "{receive.http[0]}"', response.status)
                 return response.response()
         return self.page_not_found

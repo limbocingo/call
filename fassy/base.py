@@ -9,6 +9,7 @@ from .util import process
 All the base of the application.
 """
 
+
 @dataclass
 class BaseRequest:
     """
@@ -48,10 +49,10 @@ class BaseServer(socket):
         #: will be made, you can change this.
         self.address = '127.0.0.1'
         self.port = 8000
-        
+
         #: The current status of the socket,
         #: it can be two values `True` or `False`.
-        #: `True` is that the server is on and 
+        #: `True` is that the server is on and
         #: `False` is the opposite of `True`.
         self.__status = False
 

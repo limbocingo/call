@@ -6,7 +6,7 @@ class Response:
     """
     Takes you'r `JSON` and trasform it to an 
     HTTP readeble bytes object.
-    
+
     Parameters of the class:
         - `json`: JSON value of the return.
         - `status`: The status that will be receveied. 
