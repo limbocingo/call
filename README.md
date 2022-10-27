@@ -11,11 +11,11 @@ install: `pip install .`
 ```python
 import fassy
 
-server = fassy.Fassy(__name__)
+application = fassy.Fassy(__name__)
 
-class Test(server.View):
+class Test(fassy.View):
   pass
  
 if __name__ == '__main__:
-  server.run()
+  application.start()
 ```
