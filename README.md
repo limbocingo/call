@@ -1,19 +1,19 @@
-# Fassy
+# Mango Framework
 Current version: `0.0.1v-beta`
 
 ### Instalation
-clone: `git clone https://github.com/limbocingo/fassy/`
+clone: `git clone https://github.com/limbocingo/mango/`
 
 install: `pip install .`
 
 ### Examples
 
 ```python
-import fassy
+import mango
 
-application = fassy.Fassy(__name__)
+application = mango.Application(__name__)
 
-class Test(fassy.View):
+class Test(mango.View):
   pass
  
 if __name__ == '__main__:
