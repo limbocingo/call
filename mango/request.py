@@ -55,6 +55,7 @@ class Request:
         #: Current path where the request was
         #: maked by the client.
         self.path = ''
+        print(response)
         for address in self.response.split()[1].split('/'):
             if address:
                 self.path += '/' + address.split('?')[0]
@@ -96,7 +97,7 @@ class Request:
 
         return parameters
 
-    def payload(self) -> dict:
+    def data(self) -> dict:
         """
         JSON gived by the client in the HTTP request.
         """

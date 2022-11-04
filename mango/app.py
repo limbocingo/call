@@ -9,7 +9,7 @@ import inspect
 import datetime
 
 
-class Fassy(BaseServer):
+class Application(BaseServer):
     """
     Create you'r server making an instance of 
     this class and execute `start`.
@@ -29,7 +29,7 @@ class Fassy(BaseServer):
     def __init__(self, module: str, address: str = '127.0.0.1', port: int = 8000) -> None:
         """
         Initilaizator of the main class
-        :class:`Fassy`.
+        :class:`Application`.
         """
 
         super().__init__()
@@ -76,4 +76,4 @@ class Fassy(BaseServer):
                 print(
                     f'[{datetime.datetime.now()}] "{receive.http[0]}"', response.status)
                 return response.response()
-        return self.page_not_found
+        return self.page_not_found.response()

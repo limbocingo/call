@@ -24,4 +24,4 @@ class Response:
         """
         The encoded and formated HTTP text.
         """
-        return f'HTTP/1.1 {self.status} {HTTPStatus(self.status).phrase}\r\nHTTP-Version: HTTP/1.1\r\nServer: Fassy rest-API\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Lenght: {len(self.json)}\r\n\r\n{dumps(self.json)}'.encode()
+        return f'HTTP/1.1 {self.status} {HTTPStatus(self.status).phrase}\r\nHTTP-Version: HTTP/1.1\r\nServer: Fassy rest-API\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Lenght: {len(self.json) if self.json else 0}\r\n\r\n{dumps(self.json) if self.json else "null"}'.encode()
