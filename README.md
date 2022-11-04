@@ -14,7 +14,7 @@ import mango
 application = mango.Application(__name__)
 
 class Test(mango.View):
-  pass
+    path = '/test'
  
 if __name__ == '__main__:
   application.start()
