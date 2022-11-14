@@ -1,5 +1,3 @@
-from .base import BaseRequest
-
 """
 Manager of the requests 
 gived by the client.
@@ -17,7 +15,7 @@ class Request:
         - `payload`: Data gived by the request.        
     """
 
-    def __init__(self, response: BaseRequest) -> None:
+    def __init__(self, response: dict[tuple[str, int], bytes]) -> None:
         """
         Initializator of :class:`Request`.
 
@@ -32,9 +30,9 @@ class Request:
         #: The HTTP response gived by the client.
         #: And if uses for checking if the response needs
         #: to be decoded.
-        self.response: bytes | str = response.receive
+        self.response: bytes | str = response['receive']
         if isinstance(self.response, bytes):
-            self.response: str = response.receive.decode()
+            self.response: str = response['receive'].decode()
 
         #: A set of extracted information from the
         #: current response gived by the client.
@@ -55,7 +53,6 @@ class Request:
         #: Current path where the request was
         #: maked by the client.
         self.path = ''
-        print(response)
         for address in self.response.split()[1].split('/'):
             if address:
                 self.path += '/' + address.split('?')[0]

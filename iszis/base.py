@@ -3,28 +3,14 @@ from socket import socket
 
 from dataclasses import dataclass
 
-from .util import process
+from .util import Utilities
 
 """
 All the base of the application.
 """
 
 
-@dataclass
-class BaseRequest:
-    """
-    A class used for transforming the data gived
-    in the parameters to an easyer way to get.
-
-    Dataclass public variables:
-        - `address`: Address of who make the request.
-        - `receive`: Response of the request gived to the server.
-    """
-    address: tuple[str, int]
-    receive: bytes
-
-
-class BaseServer(socket):
+class BaseApplication(socket):
     """A base for creating a socket server.
 
     Public methods of the class:
@@ -62,7 +48,7 @@ class BaseServer(socket):
         super().__init__()
         self.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 
-    def response(self, request: BaseRequest) -> bytes: return None
+    def response(self, request) -> bytes: return None
 
     def start(self) -> None:
         """
@@ -80,7 +66,7 @@ class BaseServer(socket):
                   '\n\n' + str(exception)
                   )
 
-    @process
+    @Utilities.process
     def __socket(self) -> None:
         """
         Accept the requests gived on the port gived and
@@ -96,10 +82,10 @@ class BaseServer(socket):
                 try:
                     # response gived to the request maked
                     response: bytes = self.response(
-                        BaseRequest(
-                            address,
-                            client.recv(16384)
-                        )
+                        {
+                            'address': address,
+                            'receive': client.recv(16384)
+                        }
                     )
 
                     client.send(response)
@@ -122,7 +108,7 @@ class BaseServer(socket):
                 raise exception
             pass
 
-    @process
+    @Utilities.process
     def __switcher(self):
         """
         Is seeing if the key `Q` is pressed

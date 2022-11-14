@@ -1,6 +1,6 @@
+from .base import BaseApplication
 from .response import Response
 from .request import Request
-from .base import BaseServer
 from .view import View
 
 from sys import modules
@@ -8,8 +8,12 @@ import inspect
 
 import datetime
 
+"""
+Main application.
+"""
 
-class Application(BaseServer):
+
+class Application(BaseApplication):
     """
     Create you'r server making an instance of 
     this class and execute `start`.
@@ -21,17 +25,16 @@ class Application(BaseServer):
 
     #: If the path requested doesn't exists
     #: will throw this message.
-    page_not_found = Response({'error': 'Page not found!'}, 404)
+    page_not_found = {'error': 'Page not found!'}
     #: The method that was make the request
     #: isn't registered will return this.
-    unknow_method = Response({'error': 'This method isn"t registered.'}, 422)
+    unknow_method = {'error': 'This method isn\'t registered.'}
 
     def __init__(self, module: str, address: str = '127.0.0.1', port: int = 8000) -> None:
         """
         Initilaizator of the main class
         :class:`Application`.
         """
-
         super().__init__()
 
         #: Asign the address and the port
@@ -45,35 +48,33 @@ class Application(BaseServer):
 
     def response(self, request) -> bytes:
         receive: Request = Request(request)
-        for name, view in inspect.getmembers(modules[self.module], inspect.isclass):
+        for _, view in inspect.getmembers(modules[self.module], inspect.isclass):
             if not issubclass(view, View):
                 continue
 
             if not view.path:
                 raise ValueError('None PATH gived for the view.')
 
+            response = self.page_not_found, 404
             if view.path == receive.path:
                 response: Response
 
                 if receive.method == 'GET':
-                    response = Response(
-                        view.get(receive))
+                    response = view.get(receive), 200
 
                 elif receive.method == 'POST':
-                    response = Response(
-                        view.post(receive))
+                    response = view.create(receive), 200
 
                 elif receive.method == 'PATCH':
-                    response = Response(
-                        view.update(receive))
+                    response = view.update(receive), 200
 
                 elif receive.method == 'DELETE':
-                    response = Response(
-                        view.delete(receive))
-                else:
-                    response = self.unknow_method
+                    response = view.delete(receive), 200
 
-                print(
-                    f'[{datetime.datetime.now()}] "{receive.http[0]}"', response.status)
-                return response.response()
-        return self.page_not_found.response()
+                else:
+                    response = self.unknow_method, 405        
+        response = Response(response[0], response[1])
+
+        print(
+            f'[{datetime.datetime.now()}] "{receive.http[0]}"', response.status)
+        return response.response()
