@@ -1,4 +1,4 @@
-# Mango Framework
+# Iszis Framework
 Current version: `0.0.1v-beta`
 
 ### Instalation
@@ -9,11 +9,11 @@ install: `pip install .`
 ### Examples
 
 ```python
-import mango
+import iszis
 
-application = mango.Application(__name__)
+application = iszis.Application(__name__)
 
-class Test(mango.View):
+class Test(iszis.View):
     path = '/test'
  
 if __name__ == '__main__:
