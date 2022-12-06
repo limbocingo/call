@@ -1,8 +1,6 @@
 from socket import SOL_SOCKET, SO_REUSEADDR
 from socket import socket
 
-from dataclasses import dataclass
-
 from .util import Utilities
 
 """
@@ -21,7 +19,7 @@ class BaseApplication(socket):
         - `socket`: Accepts the requests gived and handle it.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, address: str, port: int) -> None:
         """Initializator of the :class:`BaseServer` class.
 
         Public class variables:
@@ -31,10 +29,10 @@ class BaseApplication(socket):
         Private class variables:
             - `status`: Status of the current server.
         """
-        #: Address and port where all the requests
-        #: will be made, you can change this.
-        self.address = '127.0.0.1'
-        self.port = 8000
+        #: Address and port where all the
+        #: requests will be made.
+        self.address = address
+        self.port = port
 
         #: The current status of the socket,
         #: it can be two values `True` or `False`.
@@ -60,7 +58,7 @@ class BaseApplication(socket):
             self.__switcher()
 
         except Exception as exception:
-            print('ERROR!',
+            print('ERROR!\n',
                   'An exception ocurred during the execution of a important function,\n',
                   'please create a issue on the github page of the code and paste the next:',
                   '\n\n' + str(exception)
@@ -99,7 +97,7 @@ class BaseApplication(socket):
                     client, address = self.accept()
 
         except KeyboardInterrupt:
-            print('Warn!',
+            print('Warn!\n',
                   'The keyboard interrupt is disabled so you can\'t\n',
                   'make combinations like this CTRL+C or CTRL+Z.')
 

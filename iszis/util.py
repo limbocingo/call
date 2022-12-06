@@ -13,5 +13,5 @@ class Utilities:
         from threading import Thread
 
         def wrapper(*args):
-            Thread(target = function, args=args).start()
+            Thread(target=function, args=args).start()
         return wrapper

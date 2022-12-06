@@ -35,12 +35,7 @@ class Application(BaseApplication):
         Initilaizator of the main class
         :class:`Application`.
         """
-        super().__init__()
-
-        #: Asign the address and the port
-        #: where all the requests will be received
-        #: and handled.
-        self.address, self.port = address, port
+        super().__init__(address, port)
 
         #: The module parameter is ussed for getting
         #: all the members of the file.
@@ -48,6 +43,8 @@ class Application(BaseApplication):
 
     def response(self, request) -> bytes:
         receive: Request = Request(request)
+        # Going class by class that is an inheritance of
+        # :class:View, basicly is a view, get it and handle it.
         for _, view in inspect.getmembers(modules[self.module], inspect.isclass):
             if not issubclass(view, View):
                 continue
