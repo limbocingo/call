@@ -20,7 +20,7 @@ class View:
         - `delete`: Delete information.
     """
 
-    def __init__(self, request: Request, path: str) -> None:
+    def __init__(self, request: Request, path: str = None) -> None:
         #: The address of the view, and where the
         #: clients make the requests.
         self.path = path

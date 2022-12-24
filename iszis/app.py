@@ -23,11 +23,9 @@ class Application(BaseApplication):
         - `unknow_method`: If the method isn't registered will throw this error.
     """
 
-    #: If the path requested doesn't exists
-    #: will throw this message.
+    #: The return of the next errors
+    #: 404 (page not found) or 405 (unknow method)
     page_not_found = {'error': 'Page not found!'}
-    #: The method that was make the request
-    #: isn't registered will return this.
     unknow_method = {'error': 'This method isn\'t registered.'}
 
     def __init__(self, module: str, address: str = '127.0.0.1', port: int = 8000) -> None:
@@ -48,6 +46,8 @@ class Application(BaseApplication):
         for _, view in inspect.getmembers(modules[self.module], inspect.isclass):
             if not issubclass(view, View):
                 continue
+            
+            view = view(receive)
 
             if not view.path:
                 raise ValueError('None PATH gived for the view.')
@@ -57,16 +57,16 @@ class Application(BaseApplication):
                 response: Response
 
                 if receive.method == 'GET':
-                    response = view.get(receive), 200
+                    response = view.get(), 200
 
                 elif receive.method == 'POST':
-                    response = view.create(receive), 200
+                    response = view.create(), 200
 
                 elif receive.method == 'PATCH':
-                    response = view.update(receive), 200
+                    response = view.update(), 200
 
                 elif receive.method == 'DELETE':
-                    response = view.delete(receive), 200
+                    response = view.delete(), 200
 
                 else:
                     response = self.unknow_method, 405        
