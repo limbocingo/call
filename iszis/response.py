@@ -1,5 +1,6 @@
 from http import HTTPStatus
 from json import dumps
+from sys import version
 
 
 class Response:
@@ -24,6 +25,11 @@ class Response:
         """
         The encoded and formated HTTP text.
         """
-        if not isinstance(self.json, dict) and not isinstance(self.json, dict):
-            raise ValueError('Response JSON needs to by dictionary or array.')
-        return f'HTTP/1.1 {self.status} {HTTPStatus(self.status).phrase}\r\nHTTP-Version: HTTP/1.1\r\nServer: Fassy rest-API\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Lenght: {len(self.json) if self.json else 0}\r\n\r\n{dumps(self.json) if self.json else "null"}'.encode()
+        return f'''HTTP/1.1 {self.status} {HTTPStatus(self.status).phrase}\r
+HTTP-Version: HTTP/1.1\r
+Server: Cast/0.0.1 Python/{version}\r
+Accept: application/json\r
+Content-Type: application/json\r
+Content-Lenght: {len(self.json) if self.json else 0}\r
+
+{dumps(self.json) if self.json else "null"}'''.encode()

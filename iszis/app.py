@@ -24,9 +24,10 @@ class Application(BaseApplication):
     """
 
     #: The return of the next errors
-    #: 404 (page not found) or 405 (unknow method)
+    #: 404 (page not found), 405 (unknow method)
     page_not_found = {'error': 'Page not found!'}
     unknow_method = {'error': 'This method isn\'t registered.'}
+
 
     def __init__(self, module: str, address: str = '127.0.0.1', port: int = 8000) -> None:
         """
@@ -46,7 +47,7 @@ class Application(BaseApplication):
         for _, view in inspect.getmembers(modules[self.module], inspect.isclass):
             if not issubclass(view, View):
                 continue
-            
+
             view = view(receive)
 
             if not view.path:
@@ -57,19 +58,25 @@ class Application(BaseApplication):
                 response: Response
 
                 if receive.method == 'GET':
-                    response = view.get(), 200
+                    response = view.get()
 
                 elif receive.method == 'POST':
-                    response = view.create(), 200
+                    response = view.create()
 
                 elif receive.method == 'PATCH':
-                    response = view.update(), 200
+                    response = view.update()
 
                 elif receive.method == 'DELETE':
-                    response = view.delete(), 200
+                    response = view.delete()
 
                 else:
-                    response = self.unknow_method, 405        
+                    response = self.unknow_method, 405
+
+                if isinstance(response, tuple):
+                    response = response[0], response[1]
+                    break
+                response = response, 200
+                break
         response = Response(response[0], response[1])
 
         print(

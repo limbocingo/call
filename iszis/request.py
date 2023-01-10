@@ -77,20 +77,23 @@ class Request:
         Get all the parameters gived for every address.
         """
         parameters = []
-        for address in self.http[0].split()[1].split('/'):
-            if not address:
-                continue
-            parameters.append({})
-
-            # split the address in two pieces, path and parameters,
-            # for then split another time in every parameter.
-            raw_parameters = address.split('?')[-1].split('&')
-            for parameter in raw_parameters:
-                if address.split('?').__len__() <= 1:
+        try:
+            for address in self.http[0].split()[1].split('/'):
+                if not address:
                     continue
+                parameters.append({})
 
-                key, value = parameter.split('=')
-                parameters[-1][key] = value
+                # split the address in two pieces, path and parameters,
+                # for then split another time in every parameter.
+                raw_parameters = address.split('?')[-1].split('&')
+                for parameter in raw_parameters:
+                    if address.split('?').__len__() <= 1:
+                        continue
+
+                    key, value = parameter.split('=')
+                    parameters[-1][key] = value
+        except ValueError:
+            return parameters
 
         return parameters
 
@@ -103,4 +106,4 @@ class Request:
         try:
             return json.loads(self.http[-1])
         except json.JSONDecodeError:
-            return None
+            return {}

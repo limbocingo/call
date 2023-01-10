@@ -54,6 +54,11 @@ class BaseApplication(socket):
         call the :func:`switcher` and the :func:`socket` functions.
         """
         try:
+            print(f'''* Server is using Cast
+* WARNING: This framework isn't a hundred percent confirmed
+           that on production will work properly.
+* Running on {self.address}:{self.port} (Press Q to quit) 
+            ''')
             self.__socket()
             self.__switcher()
 
