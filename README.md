@@ -1,4 +1,4 @@
-# Iszis Framework
+# Call Framework
 Current version: `0.0.1v-beta`
 
 ### Instalation
@@ -10,11 +10,11 @@ install: `pip install .`
 ### Examples
 
 ```python
-import iszis
+import call
 
-application = iszis.Application(__name__)
+application = call.Application(__name__)
 
-class Test(iszis.View):
+class Test(call.View):
     def __init__(self, request) -> None:
         super().__init__(request, '/test')
  
