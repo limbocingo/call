@@ -2,8 +2,9 @@
 Current version: `0.0.1v-beta`
 
 ### Instalation
-clone: `git clone https://github.com/limbocingo/iszis/`
+clone: `git clone https://github.com/limbocingo/call.git'
 
+requirements: `pip install -r requirements.txt`
 install: `pip install .`
 
 ### Examples
@@ -14,7 +15,8 @@ import iszis
 application = iszis.Application(__name__)
 
 class Test(iszis.View):
-    path = '/test'
+    def __init__(self, request) -> None:
+        super().__init__(request, '/test')
  
 if __name__ == '__main__':
   application.start()
