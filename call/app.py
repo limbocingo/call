@@ -8,10 +8,6 @@ import inspect
 
 import datetime
 
-"""
-Main application.
-"""
-
 
 class Application(BaseApplication):
     """

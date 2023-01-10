@@ -1,9 +1,5 @@
 from .request import Request
 
-"""
-View base class.
-"""
-
 
 class View:
     """

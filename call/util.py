@@ -1,9 +1,8 @@
-"""
-Utilities of the application,
-this will contain diferent functions.
-"""
-
 class Utilities:
+    """
+    Utilities of the application,
+    this will contain diferent functions.
+    """
 
     @staticmethod
     def process(function):

@@ -1,9 +1,3 @@
-"""
-Manager of the requests 
-gived by the client.
-"""
-
-
 class Request:
     """
     Transform the raw HTTP request to an more
@@ -38,7 +32,7 @@ class Request:
         #: current response gived by the client.
         #:
         #: This will have very basic information,
-        #: necessary for managing the requests gived by
+        #: the necessary for managing the requests gived by
         #: client.
 
         #: HTTP

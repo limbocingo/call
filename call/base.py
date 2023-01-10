@@ -3,10 +3,6 @@ from socket import socket
 
 from .util import Utilities
 
-"""
-All the base of the application.
-"""
-
 
 class BaseApplication(socket):
     """A base for creating a socket server.
