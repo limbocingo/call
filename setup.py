@@ -8,5 +8,5 @@ setup(
     url='https://github.com/limbocingo/call',
     author='limbocingo',
     packages=find_packages(),
-    python_requires=">=3.10",
+    python_requires=">=3.9.0",
 )
