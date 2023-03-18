@@ -2,7 +2,7 @@
 Current version: `0.0.1v-beta`
 
 ### Instalation
-clone: `git clone https://github.com/limbocingo/call.git'
+clone: `git clone https://github.com/limbocingo/call.git`
 
 requirements: `pip install -r requirements.txt`
 install: `pip install .`
