@@ -2,3 +2,4 @@ playground/
 iszis.egg-info/
 call.egg-info/
 build/
+**/__pycache__/
