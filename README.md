@@ -3,9 +3,11 @@ Current version: `0.0.1v-beta`
 You can use this code with total freedom.
 
 ### Instalation
-<p>Clone: `git clone https://github.com/limbocingo/call.git`<\p>
-<p>Go to the folder: `cd call/`<\p>
-<p>Install: `pip install .`<\p>
+Clone: `git clone https://github.com/limbocingo/call.git`
+<\br>
+Go to the folder: `cd call/`
+<\br>
+Install: `pip install .`
 
 ### Example
 
