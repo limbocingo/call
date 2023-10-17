@@ -4,9 +4,9 @@ You can use this code with total freedom.
 
 ### Instalation
 Clone: `git clone https://github.com/limbocingo/call.git`
-<\br>
+
 Go to the folder: `cd call/`
-<\br>
+
 Install: `pip install .`
 
 ### Example
