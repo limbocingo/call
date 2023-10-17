@@ -6,11 +6,20 @@ Current version: `0.0.1v-beta`
 **You can use this code with total freedom.**
 
 ### Instalation
-Clone: `git clone https://github.com/limbocingo/call.git`
+Clone: 
+```shell
+git clone https://github.com/limbocingo/call.git
+```
 
-Go to the folder: `cd call/`
+Go to the folder: 
+```shell
+cd call/
+```
 
-Install: `pip install .`
+Install: 
+```shell
+pip install .
+```
 
 ### Example
 
